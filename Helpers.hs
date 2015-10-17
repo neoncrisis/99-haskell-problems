@@ -1,9 +1,12 @@
 module Helpers (
-  test
+  (@?)
+ ,(@?=)
+ ,(@=?)
+ ,runTests
 ) where
 
-import System.IO (IO)
-import Control.Exception (assert)
+import Test.HUnit
 
-test :: String -> Bool -> IO ()
-test str ex = putStrLn . show $ assert ex str
+-- Shortcut wrapper for running an array of Testable items
+runTests :: (Testable t) => t -> IO Counts
+runTests xs = do runTestTT $ test xs

@@ -7,7 +7,7 @@
 -- Prelude> myLast ['x','y','z']
 -- 'z'
 
-import Helpers (test)
+import Helpers
 
 myLast :: [a] -> a
 myLast [] = undefined
@@ -15,6 +15,7 @@ myLast (x:[]) = x
 myLast (_:xs) = myLast xs
 
 -- Try it
-main = do
-  test "Integer List" $ myLast [1, 2, 3, 4] == 4
-  test "Character List" $ myLast ['x', 'y', 'z'] == 'z'
+main = runTests [
+    myLast [1, 2, 3, 4] @?= 4
+  , myLast ['x', 'y', 'z'] @?= 'z'
+  ]

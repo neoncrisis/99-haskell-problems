@@ -7,7 +7,7 @@
 -- Prelude> myButLast ['a'..'z']
 -- 'y'
 
-import Helpers (test)
+import Helpers
 
 myButLast :: [a] -> a
 myButLast [] = undefined
@@ -15,6 +15,8 @@ myButLast (_:[]) = undefined
 myButLast (x:_:[]) = x
 myButLast (_:_:xs) = myButLast xs
 
-main = do
-  test "myButLast [1, 2, 3, 4]" $ myButLast [1, 2, 3, 4] == 3
-  test "myButLast ['a'..'z']" $ myButLast ['a'..'z'] == 'y'
+-- Try it
+main = runTests [
+    myButLast [1, 2, 3, 4] @?= 3
+  , myButLast ['a'..'z'] @?= 'y'
+  ]
